@@ -1,6 +1,7 @@
 const crypto = require("node:crypto");
 
 const Workout = require("../database/Workout");
+const { getCurrentDateTime } = require("../database/utils");
 
 const getAllWorkouts = () => {
 	try {
@@ -22,10 +23,10 @@ const getOneWorkout = (workoutId) => {
 
 const createNewWorkout = (newWorkout) => {
 	const workoutToInsert = {
-		...newWorkout,
 		id: crypto.randomUUID(),
-		createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
-		updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+		...newWorkout,
+		createdAt: getCurrentDateTime(),
+		updatedAt: getCurrentDateTime(),
 	};
 
 	try {

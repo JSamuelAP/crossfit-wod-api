@@ -1,5 +1,5 @@
 const DB = require("./db.json");
-const { saveToDatabase } = require("./utils");
+const { saveToDatabase, getCurrentDateTime } = require("./utils");
 
 const getAllWorkouts = () => {
 	try {
@@ -63,7 +63,7 @@ const updateOneWorkout = (workoutId, changes) => {
 		const updatedWorkout = {
 			...DB.workouts[indexForUpdate],
 			...changes,
-			updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+			updatedAt: getCurrentDateTime(),
 		};
 		DB.workouts[indexForUpdate] = updatedWorkout;
 		saveToDatabase(DB);

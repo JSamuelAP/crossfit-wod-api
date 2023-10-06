@@ -16,13 +16,13 @@
         "9 thrusters",
         "6 rope climbs, 15 ft"
       ],
-      "createdAt": "4/20/2022, 2:21:56 PM",
-      "updatedAt": "4/20/2022, 2:21:56 PM",
       "trainerTips": [
         "Split the 21 thrusters as needed",
         "Try to do the 9 and 6 thrusters unbroken",
         "RX Weights: 115lb/75lb"
-      ]
+      ],
+      "createdAt": "4/20/2022, 2:21:56 PM",
+      "updatedAt": "4/20/2022, 2:21:56 PM"
     },
     {
       "id": "4a3d9aaa-608c-49a7-a004-66305ad4ab50",
@@ -35,13 +35,13 @@
         "15 deadlifts",
         "15 hand-release push-ups"
       ],
-      "createdAt": "1/25/2022, 1:15:44 PM",
-      "updatedAt": "3/10/2022, 8:21:56 AM",
       "trainerTips": [
         "Deadlifts are meant to be light and fast",
         "Try to aim for unbroken sets",
         "RX Weights: 135lb/95lb"
-      ]
+      ],
+      "createdAt": "1/25/2022, 1:15:44 PM",
+      "updatedAt": "3/10/2022, 8:21:56 AM"
     },
     {
       "id": "d8be2362-7b68-4ea4-a1f6-03f8bc4eede7",
@@ -56,15 +56,16 @@
         "9 hang power cleans",
         "6 push jerks"
       ],
-      "createdAt": "11/20/2021, 5:39:07 PM",
-      "updatedAt": "11/20/2021, 5:39:07 PM",
       "trainerTips": [
         "Aim for unbroken push jerks",
         "The first three rounds might feel terrible, but stick to it",
         "RX Weights: 205lb/145lb"
-      ]
+      ],
+      "createdAt": "11/20/2021, 5:39:07 PM",
+      "updatedAt": "4/22/2022, 5:49:18 PM"
     },
     {
+      "id": "a24d2618-01d1-4682-9288-8de1343e53c7",
       "name": "Core Buster",
       "mode": "AMRAP 20",
       "equipment": [
@@ -78,13 +79,90 @@
         "30 abmat sit-ups"
       ],
       "trainerTips": [
-        "Split your toes to bars into two sets maximum",
+        "Split your toes to bars in two sets maximum",
         "Go unbroken on the thrusters",
         "Take the abmat sit-ups as a chance to normalize your breath"
       ],
-      "id": "45449c32-a037-4450-943f-7134fd1e837e",
-      "createdAt": "9/30/2023, 5:58:49 PM",
-      "updatedAt": "9/30/2023, 5:58:49 PM"
+      "createdAt": "4/22/2022, 5:50:17 PM",
+      "updatedAt": "4/22/2022, 5:50:17 PM"
+    }
+  ],
+  "members": [
+    {
+      "id": "12a410bc-849f-4e7e-bfc8-4ef283ee4b19",
+      "name": "Jason Miller",
+      "gender": "male",
+      "dateOfBirth": "23/04/1990",
+      "email": "jason@mail.com",
+      "password": "666349420ec497c1dc890c45179d44fb13220239325172af02d1fb6635922956"
+    },
+    {
+      "id": "2b9130d4-47a7-4085-800e-0144f6a46059",
+      "name": "Tiffany Brookston",
+      "gender": "female",
+      "dateOfBirth": "09/06/1996",
+      "email": "tiffy@mail.com",
+      "password": "8a1ea5669b749354110dcba3fac5546c16e6d0f73a37f35a84f6b0d7b3c22fcc"
+    },
+    {
+      "id": "11817fb1-03a1-4b4a-8d27-854ac893cf41",
+      "name": "Catrin Stevenson",
+      "gender": "female",
+      "dateOfBirth": "17/08/2001",
+      "email": "catrin@mail.com",
+      "password": "18eb2d6c5373c94c6d5d707650d02c3c06f33fac557c9cfb8cb1ee625a649ff3"
+    },
+    {
+      "id": "6a89217b-7c28-4219-bd7f-af119c314159",
+      "name": "Greg Bronson",
+      "gender": "male",
+      "dateOfBirth": "08/04/1993",
+      "email": "greg@mail.com",
+      "password": "a6dcde7eceb689142f21a1e30b5fdb868ec4cd25d5537d67ac7e8c7816b0e862"
+    },
+    {
+      "id": "ac23ae88-05b5-4b8d-83b8-a15f938b834c",
+      "name": "JSamuel",
+      "gender": "male",
+      "dateOfBirth": "24/04/2002",
+      "email": "sp4619168@gmail.com",
+      "password": "02208b9403a87df9f4ed6b2ee2657efaa589026b4cce9accc8e8a5bf3d693c86",
+      "createdAt": "10/6/2023, 1:33:35 AM",
+      "updatedAt": "10/6/2023, 1:33:35 AM"
+    }
+  ],
+  "records": [
+    {
+      "id": "ad75d475-ac57-44f4-a02a-8f6def58ff56",
+      "workout": "4a3d9aaa-608c-49a7-a004-66305ad4ab50",
+      "record": "160 reps",
+      "member": "12a410bc-849f-4e7e-bfc8-4ef283ee4b19"
+    },
+    {
+      "id": "0bff586f-2017-4526-9e52-fe3ea46d55ab",
+      "workout": "d8be2362-7b68-4ea4-a1f6-03f8bc4eede7",
+      "record": "7:23 minutes",
+      "member": "6a89217b-7c28-4219-bd7f-af119c314159"
+    },
+    {
+      "id": "365cc0bb-ba8f-41d3-bf82-83d041d38b82",
+      "workout": "a24d2618-01d1-4682-9288-8de1343e53c7",
+      "record": "358 reps",
+      "member": "ac23ae88-05b5-4b8d-83b8-a15f938b834c"
+    },
+    {
+      "id": "62251cfe-fdb6-4fa6-9a2d-c21be93ac78d",
+      "workout": "4a3d9aaa-608c-49a7-a004-66305ad4ab50",
+      "record": "145 reps",
+      "member": "2b9130d4-47a7-4085-800e-0144f6a46059"
+    },
+    {
+      "workout": "d8be2362-7b68-4ea4-a1f6-03f8bc4eede7",
+      "record": "175 reps",
+      "member": "12a410bc-849f-4e7e-bfc8-4ef283ee4b19",
+      "id": "087040e3-f100-4636-a1b5-5a69cb8943db",
+      "createdAt": "10/5/2023, 2:45:26 AM",
+      "updatedAt": "10/5/2023, 3:24:23 AM"
     }
   ]
 }
