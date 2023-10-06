@@ -1,9 +1,12 @@
 const memberService = require("../services/memberService");
 
 const getAllMembers = (req, res) => {
-	const { name, gender } = req.query;
+	const { name, gender, lenght, page } = req.query;
 	try {
-		const allMembers = memberService.getAllMembers({ name, gender });
+		const allMembers = memberService.getAllMembers(
+			{ name, gender },
+			{ lenght, page }
+		);
 		res.send({ status: "OK", data: allMembers });
 	} catch (error) {
 		res

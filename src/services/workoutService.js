@@ -3,9 +3,9 @@ const crypto = require("node:crypto");
 const Workout = require("../database/Workout");
 const { getCurrentDateTime } = require("../database/utils");
 
-const getAllWorkouts = (filterParams) => {
+const getAllWorkouts = (filterParams, paginationParams) => {
 	try {
-		const allWorkouts = Workout.getAllWorkouts(filterParams);
+		const allWorkouts = Workout.getAllWorkouts(filterParams, paginationParams);
 		return allWorkouts;
 	} catch (error) {
 		throw error;

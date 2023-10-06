@@ -3,9 +3,9 @@ const crypto = require("node:crypto");
 const Member = require("../database/Member");
 const { getCurrentDateTime, hashPassword } = require("../database/utils");
 
-const getAllMembers = (filterParams) => {
+const getAllMembers = (filterParams, paginationParams) => {
 	try {
-		const allMembers = Member.getAllMembers(filterParams);
+		const allMembers = Member.getAllMembers(filterParams, paginationParams);
 		return allMembers;
 	} catch (error) {
 		throw error;

@@ -41,8 +41,10 @@ const getRecordsForMember = (req, res) => {
 };
 
 const getAllRecords = (req, res) => {
+	const { length, page } = req.query;
+
 	try {
-		const allRecords = recordService.getAllRecords();
+		const allRecords = recordService.getAllRecords({ length, page });
 		res.send({ status: "OK", data: allRecords });
 	} catch (error) {
 		res

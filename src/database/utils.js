@@ -19,9 +19,18 @@ const comparePassword = (password, hashedPassword) => {
 	return hashPassword(password) === hashedPassword;
 };
 
+const getPage = (array = [], page = 1, length = 20) => {
+	page = parseInt(page);
+	length = parseInt(length);
+	const startIndex = (page - 1) * length;
+	const endIndex = page * length;
+	return array.slice(startIndex, endIndex);
+};
+
 module.exports = {
 	saveToDatabase,
 	getCurrentDateTime,
 	hashPassword,
 	comparePassword,
+	getPage,
 };

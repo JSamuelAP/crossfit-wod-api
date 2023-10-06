@@ -1,10 +1,11 @@
 const DB = require("./db.json");
 
-const { saveToDatabase, getCurrentDateTime } = require("./utils");
+const { saveToDatabase, getCurrentDateTime, getPage } = require("./utils");
 
-const getAllMembers = (filterParams) => {
+const getAllMembers = (filterParams, paginationParams) => {
 	try {
 		let members = DB.members;
+
 		if (filterParams.name)
 			members = members.filter((member) =>
 				member.name.toLowerCase().includes(filterParams.name)
@@ -13,6 +14,8 @@ const getAllMembers = (filterParams) => {
 			members = members.filter(
 				(member) => member.gender === filterParams.gender
 			);
+		members = getPage(members, paginationParams.page, paginationParams.length);
+
 		return members;
 	} catch (error) {
 		throw { status: 500, message: error };
