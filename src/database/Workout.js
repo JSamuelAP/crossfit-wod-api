@@ -1,9 +1,18 @@
 const DB = require("./db.json");
 const { saveToDatabase, getCurrentDateTime } = require("./utils");
 
-const getAllWorkouts = () => {
+const getAllWorkouts = (filterParams) => {
 	try {
-		return DB.workouts;
+		let workouts = DB.workouts;
+		if (filterParams.mode)
+			workouts = workouts.filter((workout) =>
+				workout.mode.toLowerCase().includes(filterParams.mode)
+			);
+		if (filterParams.equipment)
+			workouts = workouts.filter((workout) =>
+				workout.equipment.includes(filterParams.equipment)
+			);
+		return workouts;
 	} catch (error) {
 		throw { status: 500, message: error };
 	}

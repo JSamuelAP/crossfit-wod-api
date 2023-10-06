@@ -2,9 +2,18 @@ const DB = require("./db.json");
 
 const { saveToDatabase, getCurrentDateTime } = require("./utils");
 
-const getAllMembers = () => {
+const getAllMembers = (filterParams) => {
 	try {
-		return DB.members;
+		let members = DB.members;
+		if (filterParams.name)
+			members = members.filter((member) =>
+				member.name.toLowerCase().includes(filterParams.name)
+			);
+		if (filterParams.gender)
+			members = members.filter(
+				(member) => member.gender === filterParams.gender
+			);
+		return members;
 	} catch (error) {
 		throw { status: 500, message: error };
 	}
