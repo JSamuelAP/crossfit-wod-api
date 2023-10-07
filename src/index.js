@@ -1,13 +1,16 @@
 const express = require("express");
+const apicache = require("apicache");
 
 const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
 const v1RecordRouter = require("./v1/routes/recordRoutes");
 const v1MemberRouter = require("./v1/routes/memberRoutes");
+const cache = apicache.middleware;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cache("2 minutes"));
 
 app.use("/api/v1/workouts", v1WorkoutRouter);
 app.use("/api/v1/records", v1RecordRouter);
