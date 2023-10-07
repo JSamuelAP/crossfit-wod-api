@@ -41,10 +41,10 @@ const getRecordsForMember = (req, res) => {
 };
 
 const getAllRecords = (req, res) => {
-	const { length, page } = req.query;
+	const { length, page, sort } = req.query;
 
 	try {
-		const allRecords = recordService.getAllRecords({ length, page });
+		const allRecords = recordService.getAllRecords({ length, page }, { sort });
 		res.send({ status: "OK", data: allRecords });
 	} catch (error) {
 		res

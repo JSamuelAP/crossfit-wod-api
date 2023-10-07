@@ -1,7 +1,12 @@
 const DB = require("./db.json");
-const { saveToDatabase, getCurrentDateTime, getPage } = require("./utils");
+const {
+	saveToDatabase,
+	getCurrentDateTime,
+	getPage,
+	sortByDate,
+} = require("./utils");
 
-const getAllWorkouts = (filterParams, paginationParams) => {
+const getAllWorkouts = (filterParams, paginationParams, sortingParams) => {
 	try {
 		let workouts = DB.workouts;
 
@@ -18,6 +23,7 @@ const getAllWorkouts = (filterParams, paginationParams) => {
 			paginationParams.page,
 			paginationParams.length
 		);
+		if (sortingParams.sort) workouts = sortByDate(workouts, sortingParams.sort);
 
 		return workouts;
 	} catch (error) {

@@ -1,6 +1,11 @@
 const DB = require("./db.json");
 
-const { saveToDatabase, getCurrentDateTime, getPage } = require("./utils");
+const {
+	saveToDatabase,
+	getCurrentDateTime,
+	getPage,
+	sortByDate,
+} = require("./utils");
 
 const getRecordsForWorkout = (workoutId) => {
 	try {
@@ -30,13 +35,15 @@ const getRecordsForMember = (memberId) => {
 	}
 };
 
-const getAllRecords = (paginationParams) => {
+const getAllRecords = (paginationParams, sortingParams) => {
 	try {
 		let records = getPage(
 			DB.records,
 			paginationParams.page,
 			paginationParams.length
 		);
+		if (sortingParams.sort) records = sortByDate(records, sortingParams.sort);
+
 		return records;
 	} catch (error) {
 		throw { status: 500, message: error };

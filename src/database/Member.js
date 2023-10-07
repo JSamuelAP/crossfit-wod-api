@@ -1,8 +1,13 @@
 const DB = require("./db.json");
 
-const { saveToDatabase, getCurrentDateTime, getPage } = require("./utils");
+const {
+	saveToDatabase,
+	getCurrentDateTime,
+	getPage,
+	sortByDate,
+} = require("./utils");
 
-const getAllMembers = (filterParams, paginationParams) => {
+const getAllMembers = (filterParams, paginationParams, sortingParams) => {
 	try {
 		let members = DB.members;
 
@@ -15,6 +20,7 @@ const getAllMembers = (filterParams, paginationParams) => {
 				(member) => member.gender === filterParams.gender
 			);
 		members = getPage(members, paginationParams.page, paginationParams.length);
+		if (sortingParams.sort) members = sortByDate(members, sortingParams.sort);
 
 		return members;
 	} catch (error) {

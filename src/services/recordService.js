@@ -20,9 +20,9 @@ const getRecordsForMember = (memberId) => {
 	}
 };
 
-const getAllRecords = (paginationParams) => {
+const getAllRecords = (paginationParams, sortingParams) => {
 	try {
-		const allRecords = Record.getAllRecords(paginationParams);
+		const allRecords = Record.getAllRecords(paginationParams, sortingParams);
 		return allRecords;
 	} catch (error) {
 		throw error;

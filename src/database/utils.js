@@ -27,10 +27,37 @@ const getPage = (array = [], page = 1, length = 20) => {
 	return array.slice(startIndex, endIndex);
 };
 
+const sortByDate = (array = [], propertyDate) => {
+	const allowedSortValues = [
+		"createdAt",
+		"updatedAt",
+		"-createdAt",
+		"-updatedAt",
+	];
+
+	if (allowedSortValues.includes(propertyDate)) {
+		const descending = propertyDate.charAt(0) === "-";
+		const property = descending ? propertyDate.substring(1) : propertyDate;
+
+		return array.sort((obj1, obj2) => {
+			const date1 = new Date(obj1[property]);
+			const date2 = new Date(obj2[property]);
+			const order = descending ? -1 : 1; // sorting direction
+
+			if (date1 < date2) return -1 * order;
+			else if (date1 > date2) return order;
+			else return 0; // Equals
+		});
+	}
+
+	return array;
+};
+
 module.exports = {
 	saveToDatabase,
 	getCurrentDateTime,
 	hashPassword,
 	comparePassword,
 	getPage,
+	sortByDate,
 };
