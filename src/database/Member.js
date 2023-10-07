@@ -61,7 +61,6 @@ const createNewMember = (newMember) => {
 };
 
 const updateOneMember = (memberId, changes) => {
-	console.log(DB.members);
 	try {
 		const isAlreadyAdded =
 			DB.members.findIndex((member) => member.email === changes.email) > -1;
