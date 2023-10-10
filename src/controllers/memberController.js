@@ -8,48 +8,27 @@ const getAllMembers = (req, res) => {
 			{ length, page },
 			{ sort }
 		);
-		res.send({ status: "OK", data: allMembers });
+		res.json({ status: "OK", data: allMembers });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const getOneMember = (req, res) => {
-	const { memberId } = req.params;
-	if (!memberId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':memberId' can not be empty",
-			},
-		});
-
 	try {
-		const member = memberService.getOneMember(memberId);
-		res.send({ status: "OK", data: member });
+		const member = memberService.getOneMember(req.params.memberId);
+		res.json({ status: "OK", data: member });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const createNewMember = (req, res) => {
 	const { name, gender, dateOfBirth, email, password } = req.body;
-
-	if (!name || !gender || !dateOfBirth || !email || !password) {
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error:
-					"One of the following keys is missing or is empty in request body: 'name', 'gender', 'dateOfBirth', 'email', 'password'",
-			},
-		});
-		return;
-	}
-
 	const newMember = {
 		name,
 		gender,
@@ -60,54 +39,48 @@ const createNewMember = (req, res) => {
 
 	try {
 		const createdMember = memberService.createNewMember(newMember);
-		res.status(201).send({ status: "OK", data: createdMember });
+		res.status(201).json({ status: "OK", data: createdMember });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const updateOneMember = (req, res) => {
-	const {
-		body,
-		params: { memberId },
-	} = req;
-	if (!memberId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':memberId' can not be empty",
-			},
-		});
+	const allowedProperties = [
+		"name",
+		"gender",
+		"dateOfBirth",
+		"email",
+		"password",
+	];
+	const changes = {};
+
+	for (const prop of allowedProperties)
+		if (req.body.hasOwnProperty(prop)) changes[prop] = req.body[prop];
 
 	try {
-		const updatedMember = memberService.updateOneMember(memberId, body);
-		res.send({ status: "OK", data: updatedMember });
+		const updatedMember = memberService.updateOneMember(
+			req.params.memberId,
+			changes
+		);
+		res.json({ status: "OK", data: updatedMember });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const deleteOneMember = (req, res) => {
-	const { memberId } = req.params;
-	if (!memberId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':memberId' can not be empty",
-			},
-		});
-
 	try {
-		memberService.deleteOneMember(memberId);
-		res.send({ status: "OK" });
+		memberService.deleteOneMember(req.params.memberId);
+		res.json({ status: "OK" });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 

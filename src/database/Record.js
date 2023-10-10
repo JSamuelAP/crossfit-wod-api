@@ -9,13 +9,17 @@ const {
 
 const getRecordsForWorkout = (workoutId) => {
 	try {
-		const record = DB.records.filter((record) => record.workout === workoutId);
-		if (!record)
+		const workoutIndex = DB.workouts.findIndex(
+			(workout) => workout.id === workoutId
+		);
+		if (workoutIndex === -1)
 			throw {
-				status: 400,
-				message: `Can't find workout with the id ${workoutId}`,
+				status: 404,
+				message: `Can't find workout with the id '${workoutId}'`,
 			};
-		return record;
+
+		const records = DB.records.filter((record) => record.workout === workoutId);
+		return records;
 	} catch (error) {
 		throw { status: error?.status || 500, message: error?.message || error };
 	}
@@ -23,13 +27,17 @@ const getRecordsForWorkout = (workoutId) => {
 
 const getRecordsForMember = (memberId) => {
 	try {
-		const record = DB.records.filter((record) => record.memberId === memberId);
-		if (!record)
+		const memberIndex = DB.members.findIndex(
+			(member) => member.id === memberId
+		);
+		if (memberIndex === -1)
 			throw {
-				status: 400,
-				message: `Can't find member with the id ${memberId}`,
+				status: 404,
+				message: `Can't find member with the id '${memberId}'`,
 			};
-		return record;
+
+		const records = DB.records.filter((record) => record.memberId === memberId);
+		return records;
 	} catch (error) {
 		throw { status: error?.status || 500, message: error?.message || error };
 	}
@@ -55,7 +63,7 @@ const getOneRecord = (recordId) => {
 		const record = DB.records.find((record) => record.id === recordId);
 		if (!record)
 			throw {
-				status: 400,
+				status: 404,
 				message: `Can't find record with the id '${recordId}'`,
 			};
 		return record;
@@ -66,6 +74,24 @@ const getOneRecord = (recordId) => {
 
 const createNewRecord = (newRecord) => {
 	try {
+		const { workout: workoutId, member: memberId } = newRecord;
+		const workoutIndex = DB.workouts.findIndex(
+			(workout) => workout.id === workoutId
+		);
+		if (workoutIndex === -1)
+			throw {
+				status: 400,
+				message: `Workout with the id '${workoutId} doesn't exist'`,
+			};
+		const memberIndex = DB.members.findIndex(
+			(member) => member.id === memberId
+		);
+		if (memberIndex === -1)
+			throw {
+				status: 404,
+				message: `Member with the id '${memberId} doesn't exist'`,
+			};
+
 		DB.records.push(newRecord);
 		saveToDatabase(DB);
 		return newRecord;
@@ -81,9 +107,31 @@ const updateOneRecord = (recordId, changes) => {
 		);
 		if (indexForUpdate === -1)
 			throw {
-				status: 400,
+				status: 404,
 				message: `Can't find record with the id '${recordId}'`,
 			};
+
+		const { workout: workoutId, member: memberId } = changes;
+		if (workoutId) {
+			const workoutIndex = DB.workouts.findIndex(
+				(workout) => workout.id === workoutId
+			);
+			if (workoutIndex === -1)
+				throw {
+					status: 400,
+					message: `Workout with the id '${workoutId} doesn't exist'`,
+				};
+		}
+		if (memberId) {
+			const memberIndex = DB.members.findIndex(
+				(member) => member.id === memberId
+			);
+			if (memberIndex === -1)
+				throw {
+					status: 404,
+					message: `Member with the id '${memberId} doesn't exist'`,
+				};
+		}
 
 		const updatedRecord = {
 			...DB.records[indexForUpdate],
@@ -105,7 +153,7 @@ const deleteOneRecord = (recordId) => {
 		);
 		if (indexForDeletion === -1)
 			throw {
-				status: 400,
+				status: 404,
 				message: `Can't find record with the id '${recordId}'`,
 			};
 		DB.records.splice(indexForDeletion, 1);

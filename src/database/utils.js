@@ -1,8 +1,6 @@
 const fs = require("node:fs");
 const crypto = require("node:crypto");
 
-const jwt = require("jsonwebtoken");
-
 const saveToDatabase = (DB) => {
 	fs.writeFileSync("./src/database/db.json", JSON.stringify(DB, null, 2), {
 		encoding: "utf-8",
@@ -55,20 +53,6 @@ const sortByDate = (array = [], propertyDate) => {
 	return array;
 };
 
-const generateJWT = (payload) => {
-	return new Promise((resolve, reject) => {
-		jwt.sign(
-			payload,
-			process.env.SECRETJWTKEY,
-			{ expiresIn: "1d" },
-			(err, token) => {
-				if (err) reject("Couldn't generate JWT");
-				else resolve(token);
-			}
-		);
-	});
-};
-
 module.exports = {
 	saveToDatabase,
 	getCurrentDateTime,
@@ -76,5 +60,4 @@ module.exports = {
 	comparePassword,
 	getPage,
 	sortByDate,
-	generateJWT,
 };

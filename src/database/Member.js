@@ -33,7 +33,7 @@ const getOneMember = (memberId) => {
 		const member = DB.members.find((member) => member.id === memberId);
 		if (!member)
 			throw {
-				status: 400,
+				status: 404,
 				message: `Can't find member with the id '${memberId}'`,
 			};
 		return member;
@@ -67,7 +67,7 @@ const updateOneMember = (memberId, changes) => {
 		if (isAlreadyAdded)
 			throw {
 				status: 400,
-				message: `Member with the email '${newMember.email}' already exists`,
+				message: `Member with the email '${changes.email}' already exists`,
 			};
 
 		const indexForUpdate = DB.members.findIndex(
@@ -75,8 +75,8 @@ const updateOneMember = (memberId, changes) => {
 		);
 		if (indexForUpdate === -1)
 			throw {
-				status: 400,
-				message: `Can't find member with the id '${workoutId}'`,
+				status: 404,
+				message: `Can't find member with the id '${memberId}'`,
 			};
 
 		const updatedMember = {
@@ -99,8 +99,8 @@ const deleteOneMember = (memberId) => {
 		);
 		if (indexForDeletion === -1)
 			throw {
-				status: 400,
-				message: `Can't find member with the id '${workoutId}'`,
+				status: 404,
+				message: `Can't find member with the id '${memberId}'`,
 			};
 		DB.members.splice(indexForDeletion, 1);
 		saveToDatabase(DB);

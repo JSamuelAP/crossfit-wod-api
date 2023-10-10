@@ -1,5 +1,6 @@
 const DB = require("./db.json");
-const { comparePassword, generateJWT } = require("./utils");
+const { comparePassword } = require("./utils");
+const { generateJWT } = require("../helpers/generateJWT");
 
 const login = async (credentials) => {
 	try {

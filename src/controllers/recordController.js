@@ -1,92 +1,52 @@
 const recordService = require("../services/recordService");
 
 const getRecordsForWorkout = (req, res) => {
-	const { workoutId } = req.params;
-	if (!workoutId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':workoutId' can not be empty",
-			},
-		});
-
 	try {
-		const records = recordService.getRecordsForWorkout(workoutId);
-		res.send({ status: "OK", data: records });
+		const records = recordService.getRecordsForWorkout(req.params.workoutId);
+		res.json({ status: "OK", data: records });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const getRecordsForMember = (req, res) => {
-	const { memberId } = req.params;
-	if (!memberId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':memberId' can not be empty",
-			},
-		});
-
 	try {
-		const records = recordService.getRecordsForMember(memberId);
-		res.send({ status: "OK", data: records });
+		const records = recordService.getRecordsForMember(req.params.memberId);
+		res.json({ status: "OK", data: records });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const getAllRecords = (req, res) => {
 	const { length, page, sort } = req.query;
-
 	try {
 		const allRecords = recordService.getAllRecords({ length, page }, { sort });
-		res.send({ status: "OK", data: allRecords });
+		res.json({ status: "OK", data: allRecords });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const getOneRecord = (req, res) => {
-	const { recordId } = req.params;
-	if (!recordId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':recordId' can not be empty",
-			},
-		});
-
 	try {
-		const record = recordService.getOneRecord(recordId);
-		res.send({ status: "OK", data: record });
+		const record = recordService.getOneRecord(req.params.recordId);
+		res.json({ status: "OK", data: record });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const createNewRecord = (req, res) => {
 	const { workout, record, member } = req.body;
-
-	if (!workout || !record || !member) {
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error:
-					"One of the following keys is missing or is empty in request body: 'workout', 'record', 'member'",
-			},
-		});
-		return;
-	}
-
 	const newRecord = {
 		workout,
 		record,
@@ -95,54 +55,42 @@ const createNewRecord = (req, res) => {
 
 	try {
 		const createdRecord = recordService.createNewRecord(newRecord);
-		res.status(201).send({ status: "OK", data: createdRecord });
+		res.status(201).json({ status: "OK", data: createdRecord });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const updateOneRecord = (req, res) => {
-	const {
-		body,
-		params: { recordId },
-	} = req;
-	if (!recordId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':recordId' can not be empty",
-			},
-		});
+	const allowedProperties = ["record", "workout", "member"];
+	const changes = {};
+
+	for (const prop of allowedProperties)
+		if (req.body.hasOwnProperty(prop)) changes[prop] = req.body[prop];
 
 	try {
-		const updatedRecord = recordService.updateOneRecord(recordId, body);
-		res.send({ status: "OK", data: updatedRecord });
+		const updatedRecord = recordService.updateOneRecord(
+			req.params.recordId,
+			changes
+		);
+		res.json({ status: "OK", data: updatedRecord });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 
 const deleteOneRecord = (req, res) => {
-	const { recordId } = req.params;
-	if (!recordId)
-		res.status(400).send({
-			status: "FAILED",
-			data: {
-				error: "Parameter ':recordId' can not be empty",
-			},
-		});
-
 	try {
-		recordService.deleteOneRecord(recordId);
-		res.send({ status: "OK" });
+		recordService.deleteOneRecord(req.params.recordId);
+		res.json({ status: "OK" });
 	} catch (error) {
 		res
 			.status(error?.status || 500)
-			.send({ status: "FAILED", data: { error: error?.message || error } });
+			.json({ status: "FAILED", data: { error: error?.message || error } });
 	}
 };
 

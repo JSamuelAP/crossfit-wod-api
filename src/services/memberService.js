@@ -44,6 +44,7 @@ const createNewMember = (newMember) => {
 
 const updateOneMember = (memberId, changes) => {
 	try {
+		if (changes.password) changes.password = hashPassword(changes.password);
 		const updatedMember = Member.updateOneMember(memberId, changes);
 		return updatedMember;
 	} catch (error) {
