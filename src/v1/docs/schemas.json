@@ -1,0 +1,196 @@
+{
+	"schemas": {
+		"Workout": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid",
+					"readOnly": true,
+					"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+				},
+				"name": {
+					"type": "string",
+					"example": "Tommy V"
+				},
+				"mode": {
+					"type": "string",
+					"example": "For Time"
+				},
+				"equipment": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					},
+					"example": ["barbell", "tope"]
+				},
+				"exercises": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					},
+					"example": [
+						"21 thrusters",
+						"12 rope climbs, 15 ft",
+						"15 thrusters",
+						"9 rope climbs, 15 ft",
+						"9 thrusters",
+						"6 rope climbs, 15 ft"
+					]
+				},
+				"trainerTips": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					},
+					"example": [
+						"Split the 21 thrusters as needed",
+						"Try to do the 9 and 6 thrusters unbroken",
+						"RX Weights: 115lb/75lb"
+					]
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				},
+				"updatedAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				}
+			}
+		},
+		"Record": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid",
+					"readOnly": true,
+					"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+				},
+				"record": {
+					"type": "string",
+					"example": "160 reps"
+				},
+				"workout": {
+					"type": "string",
+					"format": "uuid",
+					"description": "id of the workout that has the record",
+					"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+				},
+				"member": {
+					"type": "string",
+					"format": "uuid",
+					"description": "id of the member who achieved the record",
+					"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				},
+				"updatedAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				}
+			}
+		},
+		"Member": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid",
+					"readOnly": true,
+					"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+				},
+				"name": {
+					"type": "string",
+					"example": "JSamuel"
+				},
+				"gender": {
+					"type": "string",
+					"enum": ["male", "female"]
+				},
+				"dateOfBirth": {
+					"type": "string",
+					"format": "date",
+					"example": "24/04/2024"
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"example": "sp4619168@gmail.com"
+				},
+				"password": {
+					"type": "string",
+					"format": "password",
+					"writeOnly": true,
+					"example": "Secr3tP4ssw*rd"
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				},
+				"updatedAt": {
+					"type": "string",
+					"format": "date-time",
+					"readOnly": true,
+					"example": "4/20/2022, 2:21:56 PM"
+				}
+			}
+		},
+		"Auth": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"type": "string",
+					"format": "email",
+					"writeOnly": true,
+					"example": "sp4619168@gmail.com"
+				},
+				"password": {
+					"type": "string",
+					"format": "password",
+					"writeOnly": true,
+					"example": "Secr3tP4ssw*rd"
+				}
+			}
+		},
+		"Error": {
+			"type": "object",
+			"properties": {
+				"status": {
+					"type": "string"
+				},
+				"data": {
+					"type": "object",
+					"properties": {
+						"error": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"securitySchemes": {
+		"BearerAuth": {
+			"type": "http",
+			"scheme": "bearer",
+			"bearerFormat": "JWT"
+		}
+	}
+}

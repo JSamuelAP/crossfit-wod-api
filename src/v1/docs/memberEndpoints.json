@@ -1,0 +1,112 @@
+{
+	"/members": {
+		"get": {
+			"tags": ["Member"],
+			"summary": "Get all paginated members",
+			"security": [{ "BearerAuth": [] }],
+			"parameters": [
+				{ "$ref": "#/components/parameters/lengthParam" },
+				{ "$ref": "#/components/parameters/pageParam" }
+			],
+			"responses": {
+				"200": {
+					"$ref": "#/components/responses/ResponseMemberArray"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		},
+		"post": {
+			"tags": ["Member"],
+			"summary": "Create one new member",
+			"security": [{ "BearerAuth": [] }],
+			"requestBody": {
+				"$ref": "#/components/requestBodies/createMember"
+			},
+			"responses": {
+				"201": {
+					"$ref": "#/components/responses/ResponseMember"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		}
+	},
+	"/members/{memberId}": {
+		"get": {
+			"tags": ["Member"],
+			"summary": "Get an existing member",
+			"security": [{ "BearerAuth": [] }],
+			"parameters": [{ "$ref": "#/components/parameters/memberId" }],
+			"responses": {
+				"200": {
+					"$ref": "#/components/responses/ResponseMember"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		},
+		"patch": {
+			"tags": ["Member"],
+			"summary": "Update one member",
+			"security": [{ "BearerAuth": [] }],
+			"parameters": [{ "$ref": "#/components/parameters/memberId" }],
+			"requestBody": {
+				"$ref": "#/components/requestBodies/updateMember"
+			},
+			"responses": {
+				"200": {
+					"$ref": "#/components/responses/ResponseMember"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		},
+		"delete": {
+			"tags": ["Member"],
+			"summary": "Delete one member",
+			"security": [{ "BearerAuth": [] }],
+			"parameters": [{ "$ref": "#/components/parameters/memberId" }],
+			"responses": {
+				"204": {
+					"description": "OK",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"status": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		}
+	},
+	"/members/{memberId}/records": {
+		"get": {
+			"tags": ["Member", "Record"],
+			"summary": "Get records for member",
+			"security": [{ "BearerAuth": [] }],
+			"parameters": [{ "$ref": "#/components/parameters/memberId" }],
+			"responses": {
+				"200": {
+					"$ref": "#/components/responses/ResponseRecordArray"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		}
+	}
+}

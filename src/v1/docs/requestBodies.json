@@ -1,0 +1,78 @@
+{
+	"requestBodies": {
+		"createWorkout": {
+			"description": "Data about workout to create",
+			"required": true,
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Workout"
+					}
+				}
+			}
+		},
+		"updateWorkout": {
+			"description": "New data for workout",
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Workout"
+					}
+				}
+			}
+		},
+		"createRecord": {
+			"description": "Data about record to create",
+			"required": true,
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Record"
+					}
+				}
+			}
+		},
+		"updateRecord": {
+			"description": "New data for record",
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Record"
+					}
+				}
+			}
+		},
+		"createMember": {
+			"description": "Data about member to create",
+			"required": true,
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Member"
+					}
+				}
+			}
+		},
+		"updateMember": {
+			"description": "Data about member to update",
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Member"
+					}
+				}
+			}
+		},
+		"credentials": {
+			"description": "Credentials for login",
+			"required": true,
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Auth"
+					}
+				}
+			}
+		}
+	}
+}

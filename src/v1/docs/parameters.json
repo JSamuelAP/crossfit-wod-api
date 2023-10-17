@@ -1,0 +1,70 @@
+{
+	"parameters": {
+		"modeParam": {
+			"name": "mode",
+			"in": "query",
+			"description": "Filber by mode",
+			"schema": {
+				"type": "string"
+			}
+		},
+		"equipmentParam": {
+			"name": "equipent",
+			"in": "query",
+			"description": "Filber by equipment",
+			"schema": {
+				"type": "string"
+			}
+		},
+		"lengthParam": {
+			"name": "length",
+			"in": "query",
+			"description": "Number of resources in page",
+			"schema": {
+				"type": "integer",
+				"minimum": 1,
+				"default": 20
+			}
+		},
+		"pageParam": {
+			"name": "page",
+			"in": "query",
+			"description": "Number of page",
+			"schema": {
+				"type": "integer",
+				"minimum": 1,
+				"default": 1
+			}
+		},
+		"workoutId": {
+			"name": "workoutId",
+			"in": "path",
+			"description": "ID of workout to use",
+			"required": true,
+			"schema": {
+				"type": "string",
+				"format": "uuid"
+			}
+		},
+		"recordId": {
+			"name": "recordId",
+			"in": "path",
+			"description": "ID of record to use",
+			"required": true,
+			"schema": {
+				"type": "string",
+				"format": "uuid"
+			}
+		},
+		"memberId": {
+			"name": "memberId",
+			"in": "path",
+			"description": "ID of member to use",
+			"required": true,
+			"schema": {
+				"type": "string",
+				"format": "uuid"
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"/auth": {
+		"post": {
+			"tags": ["Auth"],
+			"summary": "Get an access token",
+			"requestBody": {
+				"$ref": "#/components/requestBodies/credentials"
+			},
+			"responses": {
+				"200": {
+					"$ref": "#/components/responses/ResponseToken"
+				},
+				"default": {
+					"$ref": "#/components/responses/ResponseError"
+				}
+			}
+		}
+	}
+}

@@ -8,6 +8,7 @@ const v1RecordRouter = require("./v1/routes/recordRoutes");
 const v1MemberRouter = require("./v1/routes/memberRoutes");
 const cache = apicache.middleware;
 const { validarJWT } = require("./middlewares/validarJWT");
+const { swaggerDocs: V1SwaggerDocs } = require("./v1/swagger");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,4 +23,5 @@ app.use("/api/v1/members", validarJWT, v1MemberRouter);
 
 app.listen(PORT, () => {
 	console.log(`🚀 API is listening on port ${PORT}`);
+	V1SwaggerDocs(app, PORT);
 });

@@ -1,0 +1,155 @@
+{
+	"responses": {
+		"ResponseWorkout": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Workout"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseWorkoutArray": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Workout"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseRecord": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/Record"
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseRecordArray": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Record"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseMember": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/Member"
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseMemberArray": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "string"
+							},
+							"data": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Member"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"ResponseError": {
+			"description": "Bad request, not found, unauthorized or internal server error",
+			"content": {
+				"application/json": {
+					"schema": {
+						"$ref": "#/components/schemas/Error"
+					}
+				}
+			}
+		},
+		"ResponseToken": {
+			"description": "OK",
+			"content": {
+				"application/json": {
+					"schema": {
+						"type": "object",
+						"properties": {
+							"memberId": {
+								"type": "string",
+								"format": "uuid",
+								"example": "61dbae02-c147-4e28-863c-db7bd402b2d6"
+							},
+							"token": {
+								"type": "string",
+								"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6IjhmZTcxMDBlLTMzZTMtNGE3ZS05MWFlLTU5MzlkYTZjZTZhYiIsImlhdCI6MTY5NzU4MTA3MiwiZXhwIjoxNjk3NjY3NDcyfQ.KZugz7MEp2HQqMr3U4EbHUWyyZEgREEyLu1t3xD6kgc"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

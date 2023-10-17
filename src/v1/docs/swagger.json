@@ -1,0 +1,19 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "CrossFit WOD API",
+		"description": "REST API for a CrossFit Training Application. This API was designed in [freeCodeCamp](https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/).",
+		"version": "1.9.0",
+		"contact": {
+			"name": "JSamuel",
+			"email": "sp4619168@gmail.com",
+			"url": "https://jsamuelap.github.io"
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3000/api/v1",
+			"description": "Development server version 1"
+		}
+	]
+}
