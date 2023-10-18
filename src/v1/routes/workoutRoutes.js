@@ -71,17 +71,20 @@ router.patch(
 			.optional()
 			.notEmpty()
 			.isArray()
-			.withMessage("Key 'equipment' must be an array"),
+			.withMessage("Key 'equipment' must be an array")
+			.custom(notEmptyArray),
 		body("exercises", "Key 'exercises' can not be empty")
 			.optional()
 			.notEmpty()
 			.isArray()
-			.withMessage("Key 'exercises' must be an array"),
+			.withMessage("Key 'exercises' must be an array")
+			.custom(notEmptyArray),
 		body("trainerTips", "Key 'trainerTips' can not be empty")
 			.optional()
 			.notEmpty()
 			.isArray()
-			.withMessage("Key 'trainerTips' must be an array"),
+			.withMessage("Key 'trainerTips' must be an array")
+			.custom(notEmptyArray),
 		validateFields,
 	],
 	updateOneWorkout

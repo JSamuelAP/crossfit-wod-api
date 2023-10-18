@@ -36,7 +36,7 @@ const getRecordsForMember = (memberId) => {
 				message: `Can't find member with the id '${memberId}'`,
 			};
 
-		const records = DB.records.filter((record) => record.memberId === memberId);
+		const records = DB.records.filter((record) => record.member === memberId);
 		return records;
 	} catch (error) {
 		throw { status: error?.status || 500, message: error?.message || error };

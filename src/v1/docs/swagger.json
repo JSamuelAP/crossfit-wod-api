@@ -3,7 +3,7 @@
 	"info": {
 		"title": "CrossFit WOD API",
 		"description": "REST API for a CrossFit Training Application. This API was designed in [freeCodeCamp](https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/).",
-		"version": "1.9.0",
+		"version": "1.9.1",
 		"contact": {
 			"name": "JSamuel",
 			"email": "sp4619168@gmail.com",
