@@ -1,7 +1,7 @@
-const crypto = require("node:crypto");
+import crypto from "node:crypto";
 
-const Workout = require("../database/Workout");
-const { getCurrentDateTime } = require("../database/utils");
+import Workout from "../database/Workout.js";
+import { getCurrentDateTime } from "../database/utils.js";
 
 const getAllWorkouts = (filterParams, paginationParams, sortingParams) => {
 	try {
@@ -58,7 +58,7 @@ const deleteOneWorkout = (workoutId) => {
 	}
 };
 
-module.exports = {
+export default {
 	getAllWorkouts,
 	getOneWorkout,
 	createNewWorkout,

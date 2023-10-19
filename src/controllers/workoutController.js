@@ -1,4 +1,4 @@
-const workoutService = require("../services/workoutService");
+import workoutService from "../services/workoutService.js";
 
 const getAllWorkouts = (req, res) => {
 	const { mode, equipment, length, page, sort } = req.query;
@@ -84,7 +84,7 @@ const deleteOneWorkout = (req, res) => {
 	}
 };
 
-module.exports = {
+export {
 	getAllWorkouts,
 	getOneWorkout,
 	createNewWorkout,

@@ -1,4 +1,4 @@
-const recordService = require("../services/recordService");
+import recordService from "../services/recordService.js";
 
 const getRecordsForWorkout = (req, res) => {
 	try {
@@ -94,7 +94,7 @@ const deleteOneRecord = (req, res) => {
 	}
 };
 
-module.exports = {
+export {
 	getRecordsForWorkout,
 	getRecordsForMember,
 	getAllRecords,

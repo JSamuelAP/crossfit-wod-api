@@ -1,4 +1,4 @@
-const { param, query } = require("express-validator");
+import { param, query } from "express-validator";
 
 const notEmptyId = (paramId) =>
 	param(paramId, `Parameter ':${paramId}' can not be empty`).trim().notEmpty();
@@ -19,4 +19,4 @@ const notEmptyArray = (array, { path }) => {
 	return true;
 };
 
-module.exports = { notEmptyId, lengthIsInt, pageisInt, notEmptyArray };
+export { notEmptyId, lengthIsInt, pageisInt, notEmptyArray };

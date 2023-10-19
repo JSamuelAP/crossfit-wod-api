@@ -1,6 +1,6 @@
-const DB = require("./db.json");
-const { comparePassword } = require("./utils");
-const { generateJWT } = require("../helpers/generateJWT");
+import { comparePassword, readJSON } from "./utils.js";
+import { generateJWT } from "../helpers/generateJWT.js";
+const DB = readJSON(import.meta.url, "./db.json");
 
 const login = async (credentials) => {
 	try {
@@ -23,6 +23,4 @@ const login = async (credentials) => {
 	}
 };
 
-module.exports = {
-	login,
-};
+export default { login };

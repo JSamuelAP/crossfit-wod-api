@@ -1,12 +1,13 @@
-const basicInfo = require("./swagger.json");
-const schemas = require("./schemas.json");
-const parameters = require("./parameters.json");
-const requestBodies = require("./requestBodies.json");
-const responses = require("./responses.json");
-const workoutEndpoints = require("./workoutEndpoints.json");
-const recordEndpoints = require("./recordEndpoints.json");
-const memberEndpoints = require("./memberEndpoints.json");
-const authEndpoints = require("./authEndpoints.json");
+import { readJSON } from "../../database/utils.js";
+const basicInfo = readJSON(import.meta.url, "./swagger.json");
+const schemas = readJSON(import.meta.url, "./schemas.json");
+const parameters = readJSON(import.meta.url, "./parameters.json");
+const requestBodies = readJSON(import.meta.url, "./requestBodies.json");
+const responses = readJSON(import.meta.url, "./responses.json");
+const workoutEndpoints = readJSON(import.meta.url, "./workoutEndpoints.json");
+const recordEndpoints = readJSON(import.meta.url, "./recordEndpoints.json");
+const memberEndpoints = readJSON(import.meta.url, "./memberEndpoints.json");
+const authEndpoints = readJSON(import.meta.url, "./authEndpoints.json");
 
 const swaggerSpec = {
 	...basicInfo,
@@ -24,4 +25,4 @@ const swaggerSpec = {
 	},
 };
 
-module.exports = swaggerSpec;
+export default swaggerSpec;

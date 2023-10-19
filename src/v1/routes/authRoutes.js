@@ -1,10 +1,10 @@
-const express = require("express");
-const { body } = require("express-validator");
+import { Router } from "express";
+import { body } from "express-validator";
 
-const { login } = require("../../controllers/authController");
-const { validateFields } = require("../../middlewares/validateFields");
+import { login } from "../../controllers/authController.js";
+import { validateFields } from "../../middlewares/validateFields.js";
 
-const router = express.Router();
+const router = Router();
 
 router.post(
 	"/",
@@ -19,4 +19,4 @@ router.post(
 	login
 );
 
-module.exports = router;
+export default router;

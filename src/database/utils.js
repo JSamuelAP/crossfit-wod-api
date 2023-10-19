@@ -1,8 +1,14 @@
-const fs = require("node:fs");
-const crypto = require("node:crypto");
+import { writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
+
+const readJSON = (url, path) => {
+	const require = createRequire(url);
+	return require(path);
+};
 
 const saveToDatabase = (DB) => {
-	fs.writeFileSync("./src/database/db.json", JSON.stringify(DB, null, 2), {
+	writeFileSync("./src/database/db.json", JSON.stringify(DB, null, 2), {
 		encoding: "utf-8",
 	});
 };
@@ -12,7 +18,7 @@ const getCurrentDateTime = () => {
 };
 
 const hashPassword = (password) => {
-	return crypto.createHash("sha256").update(password).digest("hex");
+	return createHash("sha256").update(password).digest("hex");
 };
 
 const comparePassword = (password, hashedPassword) => {
@@ -53,7 +59,8 @@ const sortByDate = (array = [], propertyDate) => {
 	return array;
 };
 
-module.exports = {
+export {
+	readJSON,
 	saveToDatabase,
 	getCurrentDateTime,
 	hashPassword,

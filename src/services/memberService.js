@@ -1,7 +1,7 @@
-const crypto = require("node:crypto");
+import crypto from "node:crypto";
 
-const Member = require("../database/Member");
-const { getCurrentDateTime, hashPassword } = require("../database/utils");
+import Member from "../database/Member.js";
+import { getCurrentDateTime, hashPassword } from "../database/utils.js";
 
 const getAllMembers = (filterParams, paginationParams, sortingParams) => {
 	try {
@@ -60,7 +60,7 @@ const deleteOneMember = (memberId) => {
 	}
 };
 
-module.exports = {
+export default {
 	getAllMembers,
 	getOneMember,
 	createNewMember,

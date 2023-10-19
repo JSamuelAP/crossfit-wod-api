@@ -1,19 +1,20 @@
-const express = require("express");
-const apicache = require("apicache");
-require("dotenv").config();
-
-const v1AuthRouter = require("./v1/routes/authRoutes");
-const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
-const v1RecordRouter = require("./v1/routes/recordRoutes");
-const v1MemberRouter = require("./v1/routes/memberRoutes");
+import express, { json } from "express";
+import dotenv from "dotenv";
+import apicache from "apicache";
+dotenv.config();
 const cache = apicache.middleware;
-const { validarJWT } = require("./middlewares/validarJWT");
-const { swaggerDocs: V1SwaggerDocs } = require("./v1/swagger");
+
+import v1AuthRouter from "./v1/routes/authRoutes.js";
+import v1WorkoutRouter from "./v1/routes/workoutRoutes.js";
+import v1RecordRouter from "./v1/routes/recordRoutes.js";
+import v1MemberRouter from "./v1/routes/memberRoutes.js";
+import { validarJWT } from "./middlewares/validarJWT.js";
+import V1SwaggerDocs from "./v1/swagger.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(json());
 //app.use(cache("2 minutes"));
 
 app.use("/api/v1/auth", v1AuthRouter);

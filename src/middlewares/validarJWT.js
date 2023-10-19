@@ -1,6 +1,7 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-const DB = require("../database/db.json");
+import { readJSON } from "../database/utils.js";
+const { members } = readJSON(import.meta.url, "../database/db.json");
 
 const validarJWT = (req, res, next) => {
 	const token = req.header("Authorization");
@@ -18,7 +19,7 @@ const validarJWT = (req, res, next) => {
 			token.split(" ")[1], // Remove 'Bearer ' format
 			process.env.SECRETJWTKEY
 		);
-		const member = DB.members.find((member) => member.id === memberId);
+		const member = members.find((member) => member.id === memberId);
 
 		if (!member)
 			return res.status(401).json({
@@ -40,6 +41,4 @@ const validarJWT = (req, res, next) => {
 	}
 };
 
-module.exports = {
-	validarJWT,
-};
+export { validarJWT };

@@ -1,11 +1,11 @@
-const DB = require("./db.json");
-
-const {
+import {
+	readJSON,
 	saveToDatabase,
 	getCurrentDateTime,
 	getPage,
 	sortByDate,
-} = require("./utils");
+} from "./utils.js";
+const DB = readJSON(import.meta.url, "./db.json");
 
 const getAllMembers = (filterParams, paginationParams, sortingParams) => {
 	try {
@@ -109,7 +109,7 @@ const deleteOneMember = (memberId) => {
 	}
 };
 
-module.exports = {
+export default {
 	getAllMembers,
 	getOneMember,
 	createNewMember,

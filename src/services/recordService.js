@@ -1,6 +1,6 @@
-const Record = require("../database/Record");
+import Record from "../database/Record.js";
 
-const { getCurrentDateTime } = require("../database/utils");
+import { getCurrentDateTime } from "../database/utils.js";
 
 const getRecordsForWorkout = (workoutId) => {
 	try {
@@ -71,7 +71,7 @@ const deleteOneRecord = (recordId) => {
 	}
 };
 
-module.exports = {
+export default {
 	getRecordsForWorkout,
 	getRecordsForMember,
 	getAllRecords,

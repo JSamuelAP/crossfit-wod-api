@@ -1,8 +1,9 @@
 {
 	"name": "crossfit-wod-api",
-	"version": "1.9.1",
+	"version": "1.9.2",
 	"description": "Crossfit Work Of Day REST API from freeCodeCamp",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"dev": "nodemon src/index.js"
 	},

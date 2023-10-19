@@ -1,23 +1,23 @@
-const express = require("express");
-const { body } = require("express-validator");
+import { Router } from "express";
+import { body } from "express-validator";
 
-const {
+import {
 	getAllWorkouts,
 	getOneWorkout,
 	createNewWorkout,
 	updateOneWorkout,
 	deleteOneWorkout,
-} = require("../../controllers/workoutController");
-const { getRecordsForWorkout } = require("../../controllers/recordController");
-const { validateFields } = require("../../middlewares/validateFields");
-const {
+} from "../../controllers/workoutController.js";
+import { getRecordsForWorkout } from "../../controllers/recordController.js";
+import { validateFields } from "../../middlewares/validateFields.js";
+import {
 	lengthIsInt,
 	pageisInt,
 	notEmptyId,
 	notEmptyArray,
-} = require("../../helpers/dbValidators");
+} from "../../helpers/dbValidators.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", [lengthIsInt(), pageisInt(), validateFields], getAllWorkouts);
 
@@ -96,4 +96,4 @@ router.delete(
 	deleteOneWorkout
 );
 
-module.exports = router;
+export default router;

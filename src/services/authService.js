@@ -1,4 +1,4 @@
-const Auth = require("../database/Auth");
+import Auth from "../database/Auth.js";
 
 const login = async (credentials) => {
 	try {
@@ -8,4 +8,4 @@ const login = async (credentials) => {
 	}
 };
 
-module.exports = { login };
+export default { login };

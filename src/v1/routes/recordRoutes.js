@@ -1,21 +1,21 @@
-const express = require("express");
-const { body } = require("express-validator");
+import { Router } from "express";
+import { body } from "express-validator";
 
-const {
+import {
 	getAllRecords,
 	getOneRecord,
 	createNewRecord,
 	updateOneRecord,
 	deleteOneRecord,
-} = require("../../controllers/recordController");
-const {
+} from "../../controllers/recordController.js";
+import {
 	lengthIsInt,
 	pageisInt,
 	notEmptyId,
-} = require("../../helpers/dbValidators");
-const { validateFields } = require("../../middlewares/validateFields");
+} from "../../helpers/dbValidators.js";
+import { validateFields } from "../../middlewares/validateFields.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", [lengthIsInt(), pageisInt(), validateFields], getAllRecords);
 
@@ -62,4 +62,4 @@ router.delete(
 	deleteOneRecord
 );
 
-module.exports = router;
+export default router;

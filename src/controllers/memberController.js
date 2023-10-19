@@ -1,4 +1,4 @@
-const memberService = require("../services/memberService");
+import memberService from "../services/memberService.js";
 
 const getAllMembers = (req, res) => {
 	const { name, gender, length, page, sort } = req.query;
@@ -84,7 +84,7 @@ const deleteOneMember = (req, res) => {
 	}
 };
 
-module.exports = {
+export {
 	getAllMembers,
 	getOneMember,
 	createNewMember,

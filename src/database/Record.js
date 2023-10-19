@@ -1,11 +1,11 @@
-const DB = require("./db.json");
-
-const {
+import {
+	readJSON,
 	saveToDatabase,
 	getCurrentDateTime,
 	getPage,
 	sortByDate,
-} = require("./utils");
+} from "./utils.js";
+const DB = readJSON(import.meta.url, "./db.json");
 
 const getRecordsForWorkout = (workoutId) => {
 	try {
@@ -163,7 +163,7 @@ const deleteOneRecord = (recordId) => {
 	}
 };
 
-module.exports = {
+export default {
 	getAllRecords,
 	getOneRecord,
 	getRecordsForWorkout,

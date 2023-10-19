@@ -1,22 +1,22 @@
-const express = require("express");
-const { body } = require("express-validator");
+import { Router } from "express";
+import { body } from "express-validator";
 
-const {
+import {
 	getAllMembers,
 	getOneMember,
 	createNewMember,
 	updateOneMember,
 	deleteOneMember,
-} = require("../../controllers/memberController");
-const { getRecordsForMember } = require("../../controllers/recordController");
-const {
+} from "../../controllers/memberController.js";
+import { getRecordsForMember } from "../../controllers/recordController.js";
+import {
 	notEmptyId,
 	lengthIsInt,
 	pageisInt,
-} = require("../../helpers/dbValidators");
-const { validateFields } = require("../../middlewares/validateFields");
+} from "../../helpers/dbValidators.js";
+import { validateFields } from "../../middlewares/validateFields.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", [lengthIsInt(), pageisInt(), validateFields], getAllMembers);
 
@@ -101,4 +101,4 @@ router.delete(
 	deleteOneMember
 );
 
-module.exports = router;
+export default router;
