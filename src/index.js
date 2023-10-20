@@ -1,8 +1,6 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
-import apicache from "apicache";
 dotenv.config();
-const cache = apicache.middleware;
 
 import v1AuthRouter from "./v1/routes/authRoutes.js";
 import v1WorkoutRouter from "./v1/routes/workoutRoutes.js";
@@ -15,7 +13,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(json());
-//app.use(cache("2 minutes"));
 
 app.use("/api/v1/auth", v1AuthRouter);
 app.use("/api/v1/workouts", validarJWT, v1WorkoutRouter);

@@ -32,6 +32,7 @@
 ## Watch online 👀
 
 Coming soon: react app that will use this API.
+Documentation: [Swagger UI](https://crossfit-wod-api-dev-eegs.1.us-1.fl0.io/api/v1/docs/)
 
 ## Instalation 💻
 
