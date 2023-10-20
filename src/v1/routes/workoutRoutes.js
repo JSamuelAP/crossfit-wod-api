@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { body } from "express-validator";
+import apicache from "apicache";
+const cache = apicache.middleware;
 
 import {
 	getAllWorkouts,
@@ -19,7 +21,12 @@ import {
 
 const router = Router();
 
-router.get("/", [lengthIsInt(), pageisInt(), validateFields], getAllWorkouts);
+router.get(
+	"/",
+	cache("2 minutes"),
+	[lengthIsInt(), pageisInt(), validateFields],
+	getAllWorkouts
+);
 
 router.get(
 	"/:workoutId",

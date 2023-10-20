@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { body } from "express-validator";
+import apicache from "apicache";
+const cache = apicache.middleware;
 
 import {
 	getAllMembers,
@@ -18,7 +20,12 @@ import { validateFields } from "../../middlewares/validateFields.js";
 
 const router = Router();
 
-router.get("/", [lengthIsInt(), pageisInt(), validateFields], getAllMembers);
+router.get(
+	"/",
+	cache("2 minutes"),
+	[lengthIsInt(), pageisInt(), validateFields],
+	getAllMembers
+);
 
 router.get(
 	"/:memberId",
