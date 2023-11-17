@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 
 import v1AuthRouter from "./v1/routes/authRoutes.js";
@@ -13,6 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(json());
+app.use(cors());
 
 app.use("/api/v1/auth", v1AuthRouter);
 app.use("/api/v1/workouts", validarJWT, v1WorkoutRouter);
